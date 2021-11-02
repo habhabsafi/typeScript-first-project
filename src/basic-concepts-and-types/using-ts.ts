@@ -1,4 +1,4 @@
-const button = document.querySelector("button");
+const button = document.querySelector("button")! as HTMLButtonElement;
 
 //precise type of html element bcz some html values dont have input
 //const input1 = document.getElementById("num1")
