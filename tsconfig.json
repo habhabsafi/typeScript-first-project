@@ -11,7 +11,7 @@
     // "disableReferencedProjectLoad": true,             /* Reduce the number of projects loaded automatically by TypeScript. */
 
     /* Language and Environment */
-    "target": "ES5",                                     /*--- Set the JavaScript language version for emitted JavaScript and include compatible library declarations. */
+    "target": "ES6",                                     /*--- Set the JavaScript language version for emitted JavaScript and include compatible library declarations. */
     // "lib": [
       //the default set 
       //"DOM","es6","DOM.Iterable","ScriptHost"],                                        /*--- Specify a set of bundled library declaration files that describe the target runtime environment. */
@@ -101,7 +101,8 @@
     "skipLibCheck": true                                 /* Skip type checking all .d.ts files. */
   },
   "exclude": ["src/basic-concepts-and-types",
-    "src/classes-and-interfaces"
+    "src/classes-interfaces",
+    "src/advanced-types",
               //we need to ignore node_modules 
               //"node_modules"
               //it is excluded by defuault
