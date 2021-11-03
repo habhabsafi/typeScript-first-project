@@ -1,76 +1,82 @@
-// an interface describes the structor of an object
-interface Person {
+//intersection types allow us to combine multiple types
+type Admin = {
     name: string;
-    age: number;
-    greet(phrase: string): void;
+    privileges: string[];
 }
 
-//use interface as a type 
-let user1: Person;
-user1 = {
+type Employee = {
+    name: string;
+    startDate: Date;
+}
+
+type ElevatedEmployee = Admin & Employee;
+//this also work 
+//interface ElevatedEmployee extends Employee,Admin{}
+const e1: ElevatedEmployee = {
     name: 'Max',
-    age: 10,
-    greet(phrase: string) {
-        console.log(phrase + ' ' + this.name);
+    privileges: ['create=server'],
+    startDate: new Date()
+}
+
+//combine combined types
+type Combinable = string | number;
+type Numeric = number | boolean;
+type Universal = Combinable & Numeric;
+
+function Sum(a: Combinable, b: Combinable) {
+    //this if is called type guard
+    if (typeof a === 'string' || typeof b === 'string') {
+        return a.toString() + b.toString();
+    }
+    return a + b;
+}
+type UnknownEmployee = Employee | Admin;
+function printEmployeeInformation(emp: UnknownEmployee) {
+    console.log("Name: " + emp.name);
+    //privileges shows an error because emp could be an employee
+    //so it may not have privilages
+    //we cant use typeof as a type guard because at runtime typeof emp = 'object'
+    //because typeof is used by javascript at runtime
+    //employee is a custom type that isnt known by javascript
+    //we can check if (emp.privileges) but typscript wont allow it 
+    if ('privileges' in emp) {
+        console.log("Privilages:" + emp.privileges)
+    }
+    if ('startDate' in emp) {
+        console.log("startDate:" + emp.startDate)
+    }
+}
+printEmployeeInformation(e1);
+
+//we can also use instaceOf as class type guard 
+
+class Car {
+    drive() {
+        console.log("driving  Car ...")
+    }
+}
+class Truck {
+    drive() {
+        console.log("Driving a truck...");
+    }
+    loadCargo(amount: number) {
+        console.log("Loading cargo..." + amount)
     }
 }
 
-user1.greet("hi there, i am")
+type Vehicle = Car | Truck;
 
-//differences between interface and type
-//in syntax:
-type PersonType = {
-    name: string,
-    age: number;
-    greet(phrase: string): void;
-}
-//types are more flexable (can have union types)
-//interfaces are clearer
-//interfaces are more used
-//interfaces are more popular to be implemented by classes
-interface Named {
-    readonly name: string;
-    //optional parameter
-    lastname?: string;
-
-}
-//interface can inherit one or more interfaces 
-interface Greetable extends Named {
-    greet(phrase: string): void;
-}
-class Individual implements Greetable {
-    name: string;
-    age = 30;
-    lastname?: string
-    constructor(n: string, lastname?: string) {
-        this.name = n;
-        if (this.lastname)
-            this.lastname = lastname;
+const v1 = new Car();
+const v2 = new Truck();
+function useVehicle(vehicle: Vehicle) {
+    vehicle.drive();
+    if ('loadCargo' in vehicle) {
+        vehicle.loadCargo(100);
     }
-    greet(phrase: string) {
-        console.log(phrase)
+    //instance of way
+    if (vehicle instanceof Truck) {
+        vehicle.loadCargo(100);
     }
 }
-let user2 = new Individual("Safi");
-let user3: Greetable;
-
-//interfaces can define structure of functions
-//example of function type , what already learned
-
-// type AddFn = (a: number, b: number) => number;
-
-// let add: AddFn;
-
-// add = (n1: number, n2: number) => {
-//     return n1 + n2;
-// }
-//this is howe we define a function  interface 
-// it is called anonymus function
-interface AddFn {
-    (a: number, b: number): number;
-}
-let add: AddFn;
-
-add = (n1: number, n2: number) => {
-    return n1 + n2;
-}
+useVehicle(v1)
+useVehicle(v2)
