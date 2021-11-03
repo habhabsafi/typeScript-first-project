@@ -114,4 +114,23 @@ accountingDepartment.addReport("currency")
 // console.log(accountingDepartment.)
 
 
+//doodling
+class userDto {
+    name: string = ''
+    lastName: string = ''
+    number: number = 0
+}
+class userDb {
+    Name: string = ''
+    LastName: string = ''
+    Number: number = 0
+}
 
+function parseUser(user: userDto)
+    : userDb {
+    let parsedUser = new userDb();
+    parsedUser.Name = user.name
+    parsedUser.LastName = user.lastName
+    return parsedUser;
+    // parsedUser.LastName = user.lastName
+}
