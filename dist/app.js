@@ -1,29 +1,52 @@
 "use strict";
-var user1;
-user1 = {
+var e1 = {
     name: 'Max',
-    age: 10,
-    greet: function (phrase) {
-        console.log(phrase + ' ' + this.name);
-    }
+    privileges: ['create=server'],
+    startDate: new Date()
 };
-user1.greet("hi there, i am");
-var Individual = (function () {
-    function Individual(n, lastname) {
-        this.age = 30;
-        this.name = n;
-        if (this.lastname)
-            this.lastname = lastname;
+function Sum(a, b) {
+    if (typeof a === 'string' || typeof b === 'string') {
+        return a.toString() + b.toString();
     }
-    Individual.prototype.greet = function (phrase) {
-        console.log(phrase);
+    return a + b;
+}
+function printEmployeeInformation(emp) {
+    console.log("Name: " + emp.name);
+    if ('privileges' in emp) {
+        console.log("Privilages:" + emp.privileges);
+    }
+    if ('startDate' in emp) {
+        console.log("startDate:" + emp.startDate);
+    }
+}
+printEmployeeInformation(e1);
+var Car = (function () {
+    function Car() {
+    }
+    Car.prototype.drive = function () {
+        console.log("driving  Car ...");
     };
-    return Individual;
+    return Car;
 }());
-var user2 = new Individual("Safi");
-var user3;
-var add;
-add = function (n1, n2) {
-    return n1 + n2;
-};
+var Truck = (function () {
+    function Truck() {
+    }
+    Truck.prototype.drive = function () {
+        console.log("Driving a truck...");
+    };
+    Truck.prototype.loadCargo = function (amount) {
+        console.log("Loading cargo..." + amount);
+    };
+    return Truck;
+}());
+var v1 = new Car();
+var v2 = new Truck();
+function useVehicle(vehicle) {
+    vehicle.drive();
+    if ('loadCargo' in vehicle) {
+        vehicle.loadCargo(100);
+    }
+}
+useVehicle(v1);
+useVehicle(v2);
 //# sourceMappingURL=app.js.map

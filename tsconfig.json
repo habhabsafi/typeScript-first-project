@@ -101,6 +101,7 @@
     "skipLibCheck": true                                 /* Skip type checking all .d.ts files. */
   },
   "exclude": ["src/basic-concepts-and-types",
+    "src/classes-and-interfaces"
               //we need to ignore node_modules 
               //"node_modules"
               //it is excluded by defuault
