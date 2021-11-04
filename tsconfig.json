@@ -103,6 +103,7 @@
   "exclude": ["src/basic-concepts-and-types",
     "src/classes-interfaces",
     "src/advanced-types",
+    "src/decorators",
               //we need to ignore node_modules 
               //"node_modules"
               //it is excluded by defuault
