@@ -100,10 +100,11 @@
     // "skipDefaultLibCheck": true,                      /* Skip type checking .d.ts files that are included with TypeScript. */
     "skipLibCheck": true                                 /* Skip type checking all .d.ts files. */
   },
-  "exclude": ["src/basic-concepts-and-types",
-    "src/classes-interfaces",
-    "src/advanced-types",
-    "src/decorators",
+  "exclude": ["src/tutorial/basic-concepts-and-types",
+    "src/tutorial/classes-interfaces",
+    "src/tutorial/advanced-types",
+    "src/tutorial/decorators",
+    "src/generics",
               //we need to ignore node_modules 
               //"node_modules"
               //it is excluded by defuault
